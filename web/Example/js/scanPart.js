@@ -13,7 +13,7 @@ var canvas;
 var gl;
 
 var numVertices = 24;
-var MAX_NUM_PARTICLES = 100000;
+var MAX_NUM_PARTICLES = 10000000;
 var numParticles = 0;
 
 var initialPointSize = 5;
