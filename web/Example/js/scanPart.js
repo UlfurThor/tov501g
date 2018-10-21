@@ -5,142 +5,14 @@
 
 
 ///////////////////////////////////////////////////////////////////
-var COUNTER = 0;
 
 
 
-var canvas;
-var gl;
-
-var numVertices = 24;
-var MAX_NUM_PARTICLES = 100000;
-var numParticles = 0;
-
-var initialPointSize = 5;
-var numColors = 8;
-
-var program;
 
 
 
-var pointSize = initialPointSize;
 
 
-var pointsArray = [];
-var colorsArray = [];
-
-var projectionMatrix, modelViewMatrix;
-
-
-// screen movement var
-var movement = false; // Do we rotate?
-var spinX = 0;
-var spinY = 0;
-var origX;
-var origY;
-
-var zDist = -4.0;
-
-// screen buffer location
-var cBufferId, vBufferId;
-
-var vertices = [
-
-    vec4(-2.1, -2.1, 2.1, 1.0),
-    vec4(-2.1, 2.1, 2.1, 1.0),
-    vec4(2.1, 2.1, 2.1, 1.0),
-    vec4(2.1, -2.1, 2.1, 1.0),
-    vec4(-2.1, -2.1, -2.1, 1.0),
-    vec4(-2.1, 2.1, -2.1, 1.0),
-    vec4(2.1, 2.1, -2.1, 1.0),
-    vec4(2.1, -2.1, -2.1, 1.0)
-];
-
-var vertexColors = [
-
-    vec4(0.0, 0.0, 0.0, 1.0), // black
-    vec4(1.0, 0.0, 0.0, 1.0), // red
-    vec4(1.0, 1.0, 0.0, 1.0), // yellow
-    vec4(0.0, 1.0, 0.0, 1.0), // green
-    vec4(0.0, 0.0, 1.0, 1.0), // blue
-    vec4(1.0, 0.0, 1.0, 1.0), // magenta
-    vec4(1.0, 1.0, 1.0, 1.0), // white
-    vec4(0.0, 1.0, 1.0, 1.0) // cyan
-];
-
-;
-
-
-function particle() {
-
-    var p = {};
-    p.color = vec4(0, 0, 0, 1);
-    p.position = vec4(0, 0, 0, 1);
-
-
-    return p;
-}
-
-particleSystem = [];
-
-
-
-function loadFile(path) {
-    var data = [];
-    var oFrame = document.getElementById("fileFrame");
-    var strRawContents = oFrame.contentWindow.document.body.childNodes[0].innerHTML;
-    while (strRawContents.indexOf("\r") >= 0)
-        strRawContents = strRawContents.replace("\r", "");
-    var arrLines = strRawContents.split("\n");
-    for (var i = 0; i < arrLines.length; i++) {
-
-        var curLine = arrLines[i].split(',');
-        var x = curLine[0];
-        var y = curLine[1];
-        var z = curLine[2];
-
-        var R = curLine[0];
-        var G = curLine[1];
-        var B = curLine[2];
-
-        data.push([x, y, z, R, G, B])
-
-    }
-    return data;
-}
-
-function loadFile2(path) {
-    // Check for the various File API support.
-    if (window.File && window.FileReader && window.FileList && window.Blob) {
-        alert('file loadable');
-    } else {
-        alert('The File APIs are not fully supported in this browser.');
-    }
-}
-
-
-var bufferId;
-
-function quad(a, b, c, d) {
-    pointsArray.push(vertices[a]);
-    colorsArray.push(vertexColors[0]);
-    pointsArray.push(vertices[b]);
-    colorsArray.push(vertexColors[0]);
-    pointsArray.push(vertices[c]);
-    colorsArray.push(vertexColors[0]);
-    pointsArray.push(vertices[d]);
-    colorsArray.push(vertexColors[0]);
-}
-
-
-function colorCube() {
-    quad(1, 0, 3, 2);
-    quad(2, 3, 7, 6);
-    quad(3, 0, 4, 7);
-    quad(6, 5, 1, 2);
-    quad(4, 5, 6, 7);
-    quad(5, 4, 0, 1);
-}
 
 
 window.onload = function init() {
@@ -206,6 +78,7 @@ window.onload = function init() {
 var simulation = function () {
 
     colorCube();
+    //colorCube2();
 
     // set up particles with random locations and velocities 
 
@@ -231,6 +104,7 @@ var update = function () {
     colorsArray = [];
     pointsArray = [];
     colorCube();
+    //colorCube2();
 
     for (var i = 0; i < numParticles; i++) {
 
