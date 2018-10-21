@@ -32,4 +32,10 @@ function addUIListeners() {
         update();
         document.getElementById("LoadText").innerHTML = "Nothing loaded";
     };
+
+    document.getElementById("Button_Load_Add_1000").onclick = function () {
+        apendParticleSystem(cubeCors(100));
+        update();
+        document.getElementById("LoadText").innerHTML = "Test qube genarated : " + numParticles + " particles loaded";
+    };
 }
