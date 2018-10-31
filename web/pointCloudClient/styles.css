@@ -1,0 +1,17 @@
+button {
+  border: 5px solid black;
+  border-color: #999 #999 #666 #666;
+  min-height: 4em; }
+
+.content {
+  max-width: 100vw;
+  max-height: 100vw; }
+
+body {
+  background-color: black;
+  color: white; }
+
+canvas {
+  border: 1px solid gray; }
+
+/*# sourceMappingURL=data:application/json;base64,ewoJInZlcnNpb24iOiAzLAoJImZpbGUiOiAic3R5bGVzLmNzcyIsCgkic291cmNlcyI6IFsKCQkic3R5bGVzLnNjc3MiCgldLAoJIm5hbWVzIjogW10sCgkibWFwcGluZ3MiOiAiQUFBQSxBQUFBLE1BQU0sQ0FBQztFQUNILE1BQU0sRUFBRSxlQUFlO0VBQ3ZCLFlBQVksRUFBRSxtQkFBbUI7RUFDakMsVUFBVSxFQUFFLEdBQUcsR0FDbEI7O0FBRUQsQUFBQSxRQUFRLENBQUE7RUFDSixTQUFTLEVBQUUsS0FBSztFQUNoQixVQUFVLEVBQUUsS0FBSyxHQUNwQjs7QUFFRCxBQUFBLElBQUksQ0FBQztFQUNELGdCQUFnQixFQUFFLEtBQUs7RUFDdkIsS0FBSyxFQUFFLEtBQUssR0FDZjs7QUFFRCxBQUFBLE1BQU0sQ0FBQztFQUNILE1BQU0sRUFBRyxjQUFjLEdBQzFCIgp9 */

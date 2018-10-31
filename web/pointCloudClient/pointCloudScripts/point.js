@@ -2,6 +2,7 @@ function Point(descr) {
     this.position = vec4(0, 0, 0, 1);
     this.color = vec4(0, 0, 0, 1);
     this.distance = 0;
+    this.tempature = 0;
     // Apply all setup properies from the (optional) descriptor
     for (var property in descr) {
         this[property] = descr[property];
