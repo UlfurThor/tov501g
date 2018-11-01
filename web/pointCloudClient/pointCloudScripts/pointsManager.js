@@ -33,5 +33,33 @@ var pointsManager = {
     maxDistance: 0,
     getPointsCount: function () {
         return this._points.length;
+    },
+    _pointSize: 5,
+    getPointSize: function () {
+        return this._pointSize;
+    },
+    setPointSize: function (size) {
+        this._pointSize = size;
+        return this._pointSize;
+    },
+    genRandTest: function (count) {
+        if (count === undefined) {
+            count = 1000;
+        }
+        if (count > PM_MAX_NUM_PARTICLECOUNT) {
+            count = PM_MAX_NUM_PARTICLECOUNT;
+        }
+        var td = testData(count);
+        this._points = [];
+        for (let i = 0; i < count; i++) {
+            var cords = vec4(td[i][0], td[i][1], td[i][2], 1);
+            this.addPoint({
+                position: cords,
+                color: cords
+            });
+        }
+
     }
-}
+};
+
+const PM_MAX_NUM_PARTICLECOUNT = 100000;

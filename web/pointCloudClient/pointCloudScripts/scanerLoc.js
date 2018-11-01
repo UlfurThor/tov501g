@@ -32,3 +32,17 @@ function colorCube() {
     quad(4, 5, 6, 7);
     quad(5, 4, 0, 1);
 }
+
+var vertexColors = [
+
+    vec4(0.0, 0.0, 0.0, 1.0), // black
+    vec4(1.0, 0.0, 0.0, 1.0), // red
+    vec4(1.0, 1.0, 0.0, 1.0), // yellow
+    vec4(0.0, 1.0, 0.0, 1.0), // green
+    vec4(0.0, 0.0, 1.0, 1.0), // blue
+    vec4(1.0, 0.0, 1.0, 1.0), // magenta
+    vec4(1.0, 1.0, 1.0, 1.0), // white
+    vec4(0.0, 1.0, 1.0, 1.0) // cyan
+];
+
+const SCANNER_NUM_VERTICES = 24;
