@@ -49,14 +49,71 @@ var pointsManager = {
         if (count > PM_MAX_NUM_PARTICLECOUNT) {
             count = PM_MAX_NUM_PARTICLECOUNT;
         }
+        this.maxDistance = 0;
         var td = testData(count);
+        var tdc = testData(count);
         this._points = [];
         for (let i = 0; i < count; i++) {
+            //var cords = vec4(td[i][0]*2, td[i][1]*2, td[i][2]*2, 1);
             var cords = vec4(td[i][0], td[i][1], td[i][2], 1);
+            var color = vec4(tdc[i][0], tdc[i][1], tdc[i][2], 1);
+            //var color = vec4(tdc[i][0]*2, tdc[i][1]*2, tdc[i][2]*2, 1);
             this.addPoint({
                 position: cords,
-                color: cords
+                color: color
             });
+        }
+
+    },
+    getPoint: function (index) {
+        if (index > this.getPointsCount()) {
+            return;
+        }
+        return this._points[index];
+    },
+    getP_Position: function (index) {
+        if (index > this.getPointsCount()) {
+            return vec4(0, 0, 0, 1);
+        }
+        return this._points[index].getPosition();
+    },
+    colorMode: 0,
+    getColorMode: function () {
+        return this.getColorMode;
+    },
+    setColormode: function (mode) {
+        //0 - point asigned color
+        //1 - RGB = XYZ
+        //2 - color based on distance normalized
+        if (mode < 0 || mode > 2) {
+            return this.colorMode;
+        }
+        this.colorMode = mode;
+        return this.colorMode;
+    },
+    getP_Color: function (index) {
+        if (index > this.getPointsCount()) {
+            return vec4(0, 0, 0, 0);
+        }
+
+        switch (this.colorMode) {
+            case 0:
+                return this._points[index].getColor();
+                break;
+            case 1:
+                return this._points[index].getPosition();
+                break;
+            case 2:
+                var normDist = this._points[index].getDistance(this.maxDistance);
+                var r = normDist;
+                var g = normDist;
+                var b = normDist;
+                return vec4(r, 1 - g, 0, 1);
+                break;
+
+            default:
+                return this._points[index].getColor();
+                break;
         }
 
     }

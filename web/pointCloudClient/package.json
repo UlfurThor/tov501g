@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "browser-sync": "browser-sync start --server --files pointCloudClient.html style.css pointCloudScripts/*.js",
+    "browser-sync": "browser-sync start --server --files pointCloudClient.html style.css pointCloudScripts/*",
     "sass": "node-sass --source-map-embed styles.scss styles.css  ",
     "sass-watch": "node-sass --source-map-embed --watch --recursive styles.scss styles.css",
     "lint-css": "stylelint styles.css --syntax css",

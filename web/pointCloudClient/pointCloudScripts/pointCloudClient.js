@@ -100,9 +100,8 @@ var update = function () {
     colorCube();
 
     for (var i = 0; i < pointsManager.getPointsCount(); i++) {
-        pointsArray.push(pointsManager._points[i].position);
-        colorsArray.push(pointsManager._points[i].color);
-
+        pointsArray.push(pointsManager.getP_Position(i));
+        colorsArray.push(pointsManager.getP_Color(i));
     }
     gl.bindBuffer(gl.ARRAY_BUFFER, cBufferId);
     gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(colorsArray));

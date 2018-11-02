@@ -1,7 +1,7 @@
 //--------------------
 // stores mouse/keyboard listeners
 //--------------------
-
+//ALL ADDED
 function addEventListeners() {
 
     //event listeners for mouse

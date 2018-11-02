@@ -40,3 +40,11 @@ Point.prototype.calcDistance = function () {
         pointsManager.maxDistance = dist;
     return this.distance;
 }
+
+Point.prototype.getPosition = function () {
+    return this.position;
+}
+
+Point.prototype.getColor = function () {
+    return this.color;
+}
