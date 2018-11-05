@@ -6,16 +6,33 @@ function addEventListeners() {
 
     //event listeners for mouse
     canvas.addEventListener("mousedown", function (e) {
-        movement = true;
-        origX = e.offsetX;
-        origY = e.offsetY;
+        if (e.button == 2) {
+            movement2 = true;
+            origX2 = e.offsetX;
+            origY2 = e.offsetY;
+        } else {
+            movement = true;
+            origX = e.offsetX;
+            origY = e.offsetY;
+        }
         e.preventDefault(); // Disable drag and drop
     });
 
     canvas.addEventListener("mouseup", function (e) {
         movement = false;
+        movement2 = false;
     });
 
+    canvas.addEventListener("contextmenu", function (e) {
+        if (e.button == 2) {
+            // Block right-click menu thru preventing default action.
+            //console.log(e);
+            e.preventDefault();
+        }
+    });
+
+    var slideX = 0;
+    var slideY = 0;
     canvas.addEventListener("mousemove", function (e) {
         if (movement) {
             spinY = (spinY - (e.offsetX - origX)) % 360;
@@ -29,6 +46,17 @@ function addEventListeners() {
 
             origX = e.offsetX;
             origY = e.offsetY;
+        } else if (movement2) {
+            //console.log(origX2 + " " + origY2);
+            //console.log(e.offsetX + " " + e.offsetY);
+            slideX = (origX2 - e.offsetX)*0.001;
+            slideY = (origY2 - e.offsetY)*0.001;
+            //console.log(slideX + " " + slideY);
+            //slideX /= 1000;
+            //slideY /= 1000;
+            camX += slideX;
+            camY += slideY;
+            //console.log(camX + " " + camY);
         }
 
     });
@@ -36,12 +64,15 @@ function addEventListeners() {
     // Event listener for keyboard
     window.addEventListener("keydown", function (e) {
         switch (e.keyCode) {
-            case 38: // upp �r
+            case 38: // Up arrow
                 zDist += 0.1;
                 break;
-            case 40: // ni�ur �r
+            case 40: // Down arrow
                 zDist -= 0.1;
                 break;
+        }
+        if (zDist > -0.4) {
+            zDist = -0.4;
         }
     });
 
@@ -51,6 +82,9 @@ function addEventListeners() {
             zDist += 0.1;
         } else {
             zDist -= 0.1;
+        }
+        if (zDist > -0.4) {
+            zDist = -0.4;
         }
     });
     //--------------------------------------------------------------------------------
@@ -90,24 +124,24 @@ function addEventListeners() {
             y: touchEvent.touches[0].clientY - rect.top
         };
     }
-/*
-    // Prevent scrolling when touching the canvas
-    document.body.addEventListener("touchstart", function (e) {
-        if (e.target == canvas) {
-            e.preventDefault();
-        }
-    }, false);
-    document.body.addEventListener("touchend", function (e) {
-        if (e.target == canvas) {
-            e.preventDefault();
-        }
-    }, false);
-    document.body.addEventListener("touchmove", function (e) {
-        if (e.target == canvas) {
-            e.preventDefault();
-        }
-    }, false);
-*/
+    /*
+        // Prevent scrolling when touching the canvas
+        document.body.addEventListener("touchstart", function (e) {
+            if (e.target == canvas) {
+                e.preventDefault();
+            }
+        }, false);
+        document.body.addEventListener("touchend", function (e) {
+            if (e.target == canvas) {
+                e.preventDefault();
+            }
+        }, false);
+        document.body.addEventListener("touchmove", function (e) {
+            if (e.target == canvas) {
+                e.preventDefault();
+            }
+        }, false);
+    */
     //--------------------------------------------------------------------------------
     //--------------------------------------------------------------------------------
     //--------------------------------------------------------------------------------

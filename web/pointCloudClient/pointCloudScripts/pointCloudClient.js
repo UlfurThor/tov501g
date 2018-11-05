@@ -70,7 +70,7 @@ window.onload = function init() {
     //addUIListeners();
     addEventListeners();
     pointsManager.genRandTest(10000);
-    pointsManager.printPoints();
+    //pointsManager.printPoints();
     simulation();
 }
 
@@ -109,6 +109,9 @@ var update = function () {
     gl.bufferSubData(gl.ARRAY_BUFFER, 0, flatten(pointsArray));
 }
 
+var camX = 0.0;
+var camY = 0.0;
+var camZ = 0.0;
 
 var render = function () {
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -116,7 +119,9 @@ var render = function () {
 
     update();
 
+    //var ctm = lookAt(vec3(0.0, 0.0, zDist), vec3(camX, camY, camZ), vec3(0.0, 1.0, 0.0));
     var ctm = lookAt(vec3(0.0, 0.0, zDist), vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0));
+    //ctm = mult(ctm, translate(spinX));
     ctm = mult(ctm, rotateX(spinX));
     ctm = mult(ctm, rotateY(spinY));
 
