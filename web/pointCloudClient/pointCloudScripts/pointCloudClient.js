@@ -67,7 +67,7 @@ window.onload = function init() {
 
 
     //add event listeners
-    //addUIListeners();
+    addUIListeners();
     addEventListeners();
     pointsManager.genRandTest(10000);
     //pointsManager.printPoints();

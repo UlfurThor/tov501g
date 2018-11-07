@@ -4,19 +4,20 @@
 function addUIListeners() {
 
 
-
-    document.getElementById("Button_LargerParticles").onclick = function () {
-        pointSize *= 2;
-        gl.uniform1f(gl.getUniformLocation(program, "pointSize"), pointSize);
+    
+    document.getElementById("Button_PointSize_INC").onclick = function () {
+        pointsManager.incrPointSize(2);
+        gl.uniform1f(gl.getUniformLocation(program, "pointSize"), pointsManager.getPointSize());
         update();
-        document.getElementById("PointSize").innerHTML = pointSize;
+        //document.getElementById("PointSize").innerHTML = pointsManager.getPointSize();
     };
-    document.getElementById("Button_SmalerParticles").onclick = function () {
-        pointSize /= 2;
-        gl.uniform1f(gl.getUniformLocation(program, "pointSize"), pointSize);
+    document.getElementById("Button_PointSize_DEC").onclick = function () {
+        pointsManager.decrPointSize(2);
+        gl.uniform1f(gl.getUniformLocation(program, "pointSize"), pointsManager.getPointSize());
         update();
-        document.getElementById("PointSize").innerHTML = pointSize;
+        //document.getElementById("PointSize").innerHTML = pointsManager.getPointSize();
     };
+    /*
     document.getElementById("Button_LoadFile").onclick = function () {
         createParticleSystem(loadFile("testData.data"));
         update();
@@ -38,4 +39,5 @@ function addUIListeners() {
         update();
         document.getElementById("LoadText").innerHTML = "Test qube genarated : " + numParticles + " particles loaded";
     };
+    */
 }

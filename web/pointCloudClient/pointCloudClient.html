@@ -60,9 +60,18 @@
 
 <body>
 
-  <div class=" boddy">
-    <div class=" config">
-
+  <div class=" body">
+    <div class=" body__config">
+      <div class="body__config__buttonGroup pointLoad">
+        <button id="Button_LoadFile">Load Test File</button>
+        <button id="Button_GenTest">Genarate Test Square</button>
+        <button id="Button_AppendTest">Add inkr 1000</button>
+        <button id="Button_LoadClear">Clear Data</button>
+      </div>
+      <div class="body__config__buttonGroup pointSize">
+          <button id="Button_PointSize_INC">Increase point size</button>
+          <button id="Button_PointSize_DEC">Decrese point size</button>
+        </div>
     </div>
     <div class="webGLcanvas">
       <canvas id="gl-canvas" width="512" height="512">

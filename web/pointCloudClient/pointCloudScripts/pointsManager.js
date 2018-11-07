@@ -42,6 +42,15 @@ var pointsManager = {
         this._pointSize = size;
         return this._pointSize;
     },
+    incrPointSize: function (factor) {
+        this._pointSize *= factor;
+        return this._pointSize;
+    },
+    decrPointSize: function (factor) {
+        this._pointSize /= factor;
+        return this._pointSize;
+    },
+
     genRandTest: function (count) {
         if (count === undefined) {
             count = 1000;
