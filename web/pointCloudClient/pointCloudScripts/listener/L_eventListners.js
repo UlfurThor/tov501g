@@ -49,8 +49,8 @@ function addEventListeners() {
         } else if (movement2) {
             //console.log(origX2 + " " + origY2);
             //console.log(e.offsetX + " " + e.offsetY);
-            slideX = (origX2 - e.offsetX)*0.001;
-            slideY = (origY2 - e.offsetY)*0.001;
+            slideX = (origX2 - e.offsetX) * 0.001;
+            slideY = (origY2 - e.offsetY) * 0.001;
             //console.log(slideX + " " + slideY);
             //slideX /= 1000;
             //slideY /= 1000;
@@ -65,26 +65,21 @@ function addEventListeners() {
     window.addEventListener("keydown", function (e) {
         switch (e.keyCode) {
             case 38: // Up arrow
-                zDist += 0.1;
+                zDistZoom(0.1);
                 break;
             case 40: // Down arrow
-                zDist -= 0.1;
+                zDistZoom(-0.1);
                 break;
         }
-        if (zDist > -0.4) {
-            zDist = -0.4;
-        }
+
     });
 
     // Event listener for mousewheel
     window.addEventListener("mousewheel", function (e) {
         if (e.wheelDelta > 0.0) {
-            zDist += 0.1;
+            zDistZoom(0.1);
         } else {
-            zDist -= 0.1;
-        }
-        if (zDist > -0.4) {
-            zDist = -0.4;
+            zDistZoom(-0.1);
         }
     });
     //--------------------------------------------------------------------------------

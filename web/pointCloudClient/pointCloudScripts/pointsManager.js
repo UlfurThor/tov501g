@@ -7,6 +7,11 @@ var pointsManager = {
         this._nextPointID++;
         return id;
     },
+    clear: function () {
+
+        this._points = [];
+        this.maxDistance = 0;
+    },
     addPoint: function (descr) {
 
         var p = new Point(descr);
@@ -51,29 +56,7 @@ var pointsManager = {
         return this._pointSize;
     },
 
-    genRandTest: function (count) {
-        if (count === undefined) {
-            count = 1000;
-        }
-        if (count > PM_MAX_NUM_PARTICLECOUNT) {
-            count = PM_MAX_NUM_PARTICLECOUNT;
-        }
-        this.maxDistance = 0;
-        var td = testData(count);
-        var tdc = testData(count);
-        this._points = [];
-        for (let i = 0; i < count; i++) {
-            //var cords = vec4(td[i][0]*2, td[i][1]*2, td[i][2]*2, 1);
-            var cords = vec4(td[i][0], td[i][1], td[i][2], 1);
-            var color = vec4(tdc[i][0], tdc[i][1], tdc[i][2], 1);
-            //var color = vec4(tdc[i][0]*2, tdc[i][1]*2, tdc[i][2]*2, 1);
-            this.addPoint({
-                position: cords,
-                color: color
-            });
-        }
 
-    },
     getPoint: function (index) {
         if (index > this.getPointsCount()) {
             return;
@@ -125,6 +108,51 @@ var pointsManager = {
                 break;
         }
 
+    },
+    TEST: {
+        genRandTest: function (count) {
+            if (count === undefined) {
+                count = 1000;
+            }
+            if (count > PM_MAX_NUM_PARTICLECOUNT) {
+                count = PM_MAX_NUM_PARTICLECOUNT;
+            }
+            pointsManager.clear();
+            var td = testData(count);
+            var tdc = testData(count);
+            
+            for (let i = 0; i < count; i++) {
+                //var cords = vec4(td[i][0]*2, td[i][1]*2, td[i][2]*2, 1);
+                var cords = vec4(td[i][0], td[i][1], td[i][2], 1);
+                var color = vec4(tdc[i][0], tdc[i][1], tdc[i][2], 1);
+                //var color = vec4(tdc[i][0]*2, tdc[i][1]*2, tdc[i][2]*2, 1);
+                pointsManager.addPoint({
+                    position: cords,
+                    color: color
+                });
+            }
+
+        },
+        appendRand: function (count) {
+            if (count === undefined) {
+                count = 1000;
+            }
+            if (count + pointsManager.getPointsCount() > PM_MAX_NUM_PARTICLECOUNT) {
+                count = PM_MAX_NUM_PARTICLECOUNT - pointsManager.getPointsCount();
+            }
+            var td = testData(count);
+            var tdc = testData(count);
+            for (let i = 0; i < count; i++) {
+                //var cords = vec4(td[i][0]*2, td[i][1]*2, td[i][2]*2, 1);
+                var cords = vec4(td[i][0], td[i][1], td[i][2], 1);
+                var color = vec4(tdc[i][0], tdc[i][1], tdc[i][2], 1);
+                //var color = vec4(tdc[i][0]*2, tdc[i][1]*2, tdc[i][2]*2, 1);
+                pointsManager.addPoint({
+                    position: cords,
+                    color: color
+                });
+            }
+        }
     }
 };
 

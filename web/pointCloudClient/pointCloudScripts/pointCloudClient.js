@@ -69,7 +69,7 @@ window.onload = function init() {
     //add event listeners
     addUIListeners();
     addEventListeners();
-    pointsManager.genRandTest(10000);
+    pointsManager.TEST.genRandTest(10000);
     //pointsManager.printPoints();
     simulation();
 }
