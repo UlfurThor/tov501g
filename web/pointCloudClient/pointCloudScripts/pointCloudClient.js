@@ -7,6 +7,9 @@ pointsManager.addPoint({
 pointsManager.addPoint();*/
 
 
+//TODO ad file listener
+//TODO add socket listener
+
 var canvas;
 var gl;
 // todo create graphics managers
