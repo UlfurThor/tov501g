@@ -2,6 +2,9 @@ var pointsManager = {
 
     _points: [],
     _nextPointID: 0,
+    _maxX: 0,
+    _maxY: 0,
+    _maxZ: 0,
     getNewPointID: function () {
         var id = this._nextPointID;
         this._nextPointID++;
@@ -93,7 +96,15 @@ var pointsManager = {
                 return this._points[index].getColor();
                 break;
             case 1:
-                return this._points[index].getPosition();
+                var col = this._points[index].getPosition();
+                var ret = vec4(0, 0, 0, 1);
+                for (let i = 0; i < 3; i++) {
+                    ret[i] = col[i];
+                    if (col[i] < 1)
+                        ret[i] = col[i] * -1;
+
+                }
+                return ret;
                 break;
             case 2:
                 var normDist = this._points[index].getDistance(this.maxDistance);
@@ -119,12 +130,12 @@ var pointsManager = {
             }
             pointsManager.clear();
             var td = testData(count);
-            var tdc = testData(count);
             
+
             for (let i = 0; i < count; i++) {
                 //var cords = vec4(td[i][0]*2, td[i][1]*2, td[i][2]*2, 1);
                 var cords = vec4(td[i][0], td[i][1], td[i][2], 1);
-                var color = vec4(tdc[i][0], tdc[i][1], tdc[i][2], 1);
+                var color = vec4(td[i][3], td[i][4], td[i][5], 1);
                 //var color = vec4(tdc[i][0]*2, tdc[i][1]*2, tdc[i][2]*2, 1);
                 pointsManager.addPoint({
                     position: cords,
