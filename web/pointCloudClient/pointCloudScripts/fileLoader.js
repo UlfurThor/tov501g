@@ -1,28 +1,56 @@
 function readFile() {
 
+    //const url = READ_PATH + ":" + PORT_NUMBER + '/' + DATA_FILE_NAME_JSON;
+    fetch(URL_CSV)
+        .then((response) => {
+            if (response.ok) {
+
+                console.log(response);
+                console.log('response');
+                return response.text();
+            }
+            throw new Error('Network response was not ok.');
+
+            //return response.json();
+        })
+        .then((data) => {
+            //console.log(data);
+            //console.log(JSON.stringify(data));
+
+            //console.log(`Number of lines ${nlines}`)
+            var lines = data.split("\n");
+            pointsManager.clear();
+            console.log(lines);
+            var wordsList = [];
+            console.log(lines.length);
+            for (let i = 0; i < lines.length; i++) {
+                var words = lines[i].split(',');
+                wordsList.push(words);
+                var errC = 0;
+                var errors = [];
+                if (words === undefined) {
+
+                } else {
+
+                    var cords = vec4(parseFloat(words[0]), parseFloat(words[1]), parseFloat(words[2]), 1);
+                    var color = vec4(parseFloat(words[0]), parseFloat(words[1]), parseFloat(words[2]), 1);
+
+                    pointsManager.addPoint({
+                        position: cords,
+                        color: color
+                    });
+                }
+
+            }
+
+
+        }).catch(function (error) {
+            console.log((error));
+        });
 }
 
-function processFile(inputFile) {
-    var file = new File(["foo"], inputFile);
-    /*file.open("r"); // open file with read access
-    var str = "";
-    while (!file.eof) {
-        // read each line of text
-        str += file.readln() + "\n";
-    }
-    console.log(str);
-*/
-    var openFile = function (event) {
-        var input = event.target;
 
-        var reader = new FileReader();
-        reader.onload = function () {
-            var dataURL = reader.result;
-            var output = document.getElementById('output');
-            output.src = dataURL;
-        };
-        reader.readAsDataURL(input.files[0]);
-    };
-}
-console.log(READ_PATH + ":" + PORT_NUMBER + '/' + DATA_FILE_NAME);
-processFile(READ_PATH + ":" + PORT_NUMBER + '/' + DATA_FILE_NAME);
+console.log(READ_PATH + ":" + PORT_NUMBER + '/' + DATA_FILE_NAME_JSON);
+//processFile(READ_PATH + ":" + PORT_NUMBER + '/' + DATA_FILE_NAME_JSON);
+console.log(URL_CSV);
+readFile();

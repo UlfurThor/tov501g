@@ -1,3 +1,8 @@
-const READ_PATH='localhost';
+const READ_PATH = 'http://localhost';
 const PORT_NUMBER = 3000;
-const DATA_FILE_NAME = 'testData.csv';
+const DATA_FILE_NAME_CSV = 'testData.csv';
+const DATA_FILE_NAME_JSON = 'testData.json';
+
+//const url = READ_PATH + ":" + PORT_NUMBER + '/' + DATA_FILE_NAME_JSON;
+const URL_CSV = `${READ_PATH}:${PORT_NUMBER}/${DATA_FILE_NAME_CSV}`;
+const URL_JSON = `${READ_PATH}:${PORT_NUMBER}/${DATA_FILE_NAME_JSON}`;

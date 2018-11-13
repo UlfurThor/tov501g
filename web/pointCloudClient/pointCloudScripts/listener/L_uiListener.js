@@ -5,6 +5,7 @@ function addUIListeners() {
 
     document.getElementById("Button_LoadFile").onclick = function () {
         console.log("LOAD");
+        readFile();
         update();
         
     };

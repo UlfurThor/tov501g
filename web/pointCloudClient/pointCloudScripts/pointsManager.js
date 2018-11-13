@@ -16,9 +16,12 @@ var pointsManager = {
         this.maxDistance = 0;
     },
     addPoint: function (descr) {
-
+        if (this.getPointsCount() >= PM_MAX_NUM_PARTICLECOUNT) {
+            return false;
+        }
         var p = new Point(descr);
         this._points.push(p);
+        return true;
     },
     printPoints: function (maxCount) {
         // prints list of points, maxCount sets the first n points returned
@@ -130,7 +133,7 @@ var pointsManager = {
             }
             pointsManager.clear();
             var td = testData(count);
-            
+
 
             for (let i = 0; i < count; i++) {
                 //var cords = vec4(td[i][0]*2, td[i][1]*2, td[i][2]*2, 1);
