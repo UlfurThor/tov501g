@@ -18,13 +18,13 @@ function readFile() {
             //console.log(JSON.stringify(data));
 
             //console.log(`Number of lines ${nlines}`)
-            var lines = data.split("\n");
+            var lines = data.split(CSV_LINEBREAK);
             pointsManager.clear();
             console.log(lines);
             var wordsList = [];
             console.log(lines.length);
             for (let i = 0; i < lines.length; i++) {
-                var words = lines[i].split(',');
+                var words = lines[i].split(CSV_DELIM);
                 wordsList.push(words);
                 var errC = 0;
                 var errors = [];
@@ -34,10 +34,11 @@ function readFile() {
 
                     var cords = vec4(parseFloat(words[0]), parseFloat(words[1]), parseFloat(words[2]), 1);
                     var color = vec4(parseFloat(words[0]), parseFloat(words[1]), parseFloat(words[2]), 1);
-
+                    var temp = parseFloat(words[3]);
                     pointsManager.addPoint({
                         position: cords,
-                        color: color
+                        color: color,
+                        tempature: temp
                     });
                 }
 

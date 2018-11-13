@@ -7,66 +7,71 @@ function addUIListeners() {
         console.log("LOAD");
         readFile();
         update();
-        
+
     };
 
     document.getElementById("Button_GenTest").onclick = function () {
         pointsManager.TEST.genRandTest(100);
         update();
-        
+
     };
 
     document.getElementById("Button_AppendTest").onclick = function () {
         pointsManager.TEST.appendRand(10);
         update();
-        
+
     };
 
     document.getElementById("Button_LoadClear").onclick = function () {
         pointsManager.clear();
         update();
-        
+
     };
 
-    
+
     document.getElementById("Button_PointSize_INC").onclick = function () {
         pointsManager.incrPointSize(2);
         gl.uniform1f(gl.getUniformLocation(program, "pointSize"), pointsManager.getPointSize());
         update();
-        
+
     };
     document.getElementById("Button_PointSize_DEC").onclick = function () {
         pointsManager.decrPointSize(2);
         gl.uniform1f(gl.getUniformLocation(program, "pointSize"), pointsManager.getPointSize());
         update();
-        
+
     };
 
     document.getElementById("Button_PointSize_PointColor").onclick = function () {
         pointsManager.setColormode(0);
         update();
-        
+
     };
 
     document.getElementById("Button_PointSize_CordColor").onclick = function () {
         pointsManager.setColormode(1);
         update();
-        
+
     };
     document.getElementById("Button_PointSize_DistColor").onclick = function () {
         pointsManager.setColormode(2);
         update();
-        
+
+    };
+    document.getElementById("Button_PointSize_TempColor").onclick = function () {
+        pointsManager.setColormode(3);
+        update();
+
     };
     document.getElementById("Button_ZoomIn").onclick = function () {
-        zDistZoom(0.5); 
+        zDistZoom(0.5);
         update();
-        
+
     };
     document.getElementById("Button_ZoomOut").onclick = function () {
-        zDistZoom(-0.5); 
+        zDistZoom(-0.5);
         update();
-        
+
     };
     /*
     document.getElementById("Button_LoadFile").onclick = function () {
