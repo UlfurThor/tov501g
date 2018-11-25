@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Point cloud</title>
+  <script id="vertex-shader" type="x-shader/x-vertex">
+    attribute  vec4 vPosition;
+            attribute  vec4 vColor;
+            varying vec4 fColor;
+        
+            uniform mat4 modelViewMatrix;
+            uniform mat4 projectionMatrix;
+            uniform float pointSize;
+        
+            void main()
+            {
+                gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+                fColor = vColor;
+                gl_PointSize = pointSize;
+            }
+        </script>
+
+  <script id="fragment-shader" type="x-shader/x-fragment">
+
+    precision mediump float;
+        
+            varying vec4 fColor;
+        
+            void main()
+            {
+                gl_FragColor = fColor;
+            }
+        </script>
+
+  <script type="text/javascript" src="./Common/webgl-utils.js"></script>
+  <script type="text/javascript" src="./Common/initShaders.js"></script>
+  <script type="text/javascript" src="./Common/MV.js"></script>
+
+  <!--
+
+  <script type="text/javascript" src="../Common/webgl-utils.js"></script>
+  <script type="text/javascript" src="../Common/initShaders.js"></script>
+  <script type="text/javascript" src="../Common/MV.js"></script>
+
+  -->
+
+  <script type="text/javascript" src="pointCloudScripts/CONFIG.js"></script>
+  <script type="text/javascript" src="pointCloudScripts/point.js"></script>
+  <script type="text/javascript" src="pointCloudScripts/pointsManager.js"></script>
+  <script type="text/javascript" src="pointCloudScripts/scanerLoc.js"></script>
+  <script type="text/javascript" src="pointCloudScripts/camManager.js"></script>
+  <script type="text/javascript" src="pointCloudScripts/listener/L_eventListners.js"></script>
+  <script type="text/javascript" src="pointCloudScripts/listener/L_uiListener.js"></script>
+  <script type="text/javascript" src="pointCloudScripts/test/t_genRandTest.js"></script>
+  <script type="text/javascript" src="pointCloudScripts/fileLoader.js"></script>
+  <script type="text/javascript" src="pointCloudScripts/pointCloudClient.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div class=" body">
+    <div class=" body__config">
+      <div class="body__config__buttonGroup pointLoad">
+        <button id="Button_LoadFile">Load Test File</button>
+        <button id="Button_GenTest">Genarate Test Square</button>
+        <button id="Button_AppendTest">Add inkr 1000</button>
+        <button id="Button_LoadClear">Clear Data</button>
+      </div>
+      <div class="body__config__buttonGroup pointSize">
+        <button id="Button_PointSize_INC">Increase point size</button>
+        <button id="Button_PointSize_DEC">Decrese point size</button>
+
+        <button id="Button_ZoomIn">Zoom +</button>
+        <button id="Button_ZoomOut">Zoom -</button>
+      </div>
+      <div class="body__config__buttonGroup colorMode">
+        <button id="Button_PointSize_PointColor">Point color</button>
+        <button id="Button_PointSize_CordColor">Coord color</button>
+        <button id="Button_PointSize_DistColor">Distance color</button>
+        <button id="Button_PointSize_TempColor">Tempature color</button>
+      </div>
+    </div>
+
+    <div class="webGLcanvas">
+      <canvas id="gl-canvas" width="512" height="512">
+        Oops ... your browser doesn't support the HTML5 canvas element
+      </canvas>
+    </div>
+  </div>
+
+</body>
+
+</html>

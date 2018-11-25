@@ -34,7 +34,7 @@ function addUIListeners() {
     };
 
     document.getElementById("Button_Load_Add_1000").onclick = function () {
-        apendParticleSystem(cubeCors(100));
+        apendParticleSystem(cubeCors(10));
         update();
         document.getElementById("LoadText").innerHTML = "Test qube genarated : " + numParticles + " particles loaded";
     };
